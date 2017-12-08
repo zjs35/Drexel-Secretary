@@ -1,0 +1,57 @@
+<html>
+<head>
+<!-- This is a comment -->
+<title>Assignment 3</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+	<script type="text/JavaScript" src="client.js"></script>
+</head>
+
+
+
+</script>
+
+<div data-role="page">
+
+	<div data-role="panel" id="mypanel" data-position="left" data-display="push">
+		<a data-role="button" onclick="displayHome()" href=".">Home</a>
+		<a data-role="button" onclick="displayTablesPage()" href="#">Database Tables</a>
+		<a data-role="button" onclick="displayTransPage()" href="#">Student Transcripts</a>
+		<a data-role="button" onclick="displayStudentPage()" href="#">Add Student</a>
+		<a data-role="button" href="#my-header" data-rel="close">Close panel</a>
+	</div>
+
+
+	<div data-role="header" data-position="fixed">
+		<h1>Assignment 5</h1>
+	  <!-- <a href="#mypanel">Open panel</a> -->
+	    <a href="#mypanel" data-role="button" data-icon="bars" >Menu</a>
+		<span class="ui-title" />
+	</div>
+
+
+	<div  data-role="content"  id="content">
+		<h2>Welcome to Assigment 5 of CS 275!</h2>
+		<h2>Using This Page</h2>
+		<p>Yo are in the Main menu. Click menu to nevagate to other content</p>
+		<iframe src="https://calendar.google.com/calendar/embed?src=cq1tp3pjurm746oevd6eem2lpg%40group.calendar.google.com&ctz=America%2FNew_York"
+		 style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+		<form action="javascript:makeEvent()">
+			Request Meeting time (date and time):
+			<input type="datetime-local" name="eventStartDaytime">
+			<input type="submit" value="Send">
+		</form>
+	</div>
+
+	<div data-role="footer" data-position="fixed">
+		<h1>hl483</h1>
+		<span class="ui-title" />
+	</div>
+
+</div>
+
+</html>
