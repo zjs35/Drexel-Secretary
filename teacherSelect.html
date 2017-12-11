@@ -1,0 +1,43 @@
+<html>
+<head>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+  </script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js">
+  </script>
+
+  <link type="text/css" rel="stylesheet"
+  	href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"/>
+
+  <!-- Set page header and footer that remain at top and bottom, respectively -->
+  <div data-role="header" data-position="fixed">
+    <h1> Teacher Select </h1>
+  </div>
+
+  <div data-role="footer" data-position="fixed"> <h1> Teacher Select </h1></div>
+
+  <!-- Make sure page displays properly on smaller screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <form>
+  <fieldset data-role="controlgroup" data-type="horizontal" align="center">
+  <select id="departments">
+    <option value="" disabled selected>Select A School</option><br>
+  </select>
+
+  <select id="status">
+    <option value="" disabled selected>TA/Prof</option><br>
+  </select>
+
+  <select id="name">
+    <option value="" disabled selected>Name</option><br>
+  </select>
+</fieldset>
+</form>
+  <button type="button" onclick="getCalander()">View Calander</button>
+
+</body>
+</html>
