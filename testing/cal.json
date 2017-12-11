@@ -1,0 +1,71 @@
+{
+ "kind": "calendar#calendarList",
+ "etag": "\"p324dj9ves7ute0g\"",
+ "nextSyncToken": "CIjZp-7h_dcCEiVkcmV4ZWxvZmZpY2Vob3Vyc2FmaWNpb25hZG9AZ21haWwuY29t",
+ "items": [
+  {
+   "kind": "calendar#calendarListEntry",
+   "etag": "\"1512851190123000\"",
+   "id": "drexelofficehoursaficionado@gmail.com",
+   "summary": "drexelofficehoursaficionado@gmail.com",
+   "timeZone": "America/New_York",
+   "colorId": "14",
+   "backgroundColor": "#9fe1e7",
+   "foregroundColor": "#000000",
+   "selected": true,
+   "accessRole": "owner",
+   "defaultReminders": [
+    {
+     "method": "popup",
+     "minutes": 30
+    }
+   ],
+   "notificationSettings": {
+    "notifications": [
+     {
+      "type": "eventCreation",
+      "method": "email"
+     },
+     {
+      "type": "eventChange",
+      "method": "email"
+     },
+     {
+      "type": "eventCancellation",
+      "method": "email"
+     },
+     {
+      "type": "eventResponse",
+      "method": "email"
+     }
+    ]
+   },
+   "primary": true
+  },
+  {
+   "kind": "calendar#calendarListEntry",
+   "etag": "\"1512546909359000\"",
+   "id": "mh83s7hpph44j23sq85f4vi5i0@group.calendar.google.com",
+   "summary": "Test",
+   "timeZone": "America/New_York",
+   "colorId": "21",
+   "backgroundColor": "#cca6ac",
+   "foregroundColor": "#000000",
+   "selected": true,
+   "accessRole": "freeBusyReader",
+   "defaultReminders": []
+  },
+  {
+   "kind": "calendar#calendarListEntry",
+   "etag": "\"1512438643460000\"",
+   "id": "en.usa#holiday@group.v.calendar.google.com",
+   "summary": "Holidays in United States",
+   "timeZone": "America/New_York",
+   "colorId": "8",
+   "backgroundColor": "#16a765",
+   "foregroundColor": "#000000",
+   "accessRole": "reader",
+   "defaultReminders": []
+  }
+ ]
+}

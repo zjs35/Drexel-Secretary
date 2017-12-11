@@ -8,6 +8,7 @@
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
 	<script type="text/JavaScript" src="client.js"></script>
+	<script type="text/JavaScript" src="googleAPI0.js"></script>
 </head>
 
 
@@ -18,7 +19,7 @@
 
 	<div data-role="panel" id="mypanel" data-position="left" data-display="push">
 		<a data-role="button" onclick="displayHome()" href=".">Home</a>
-		<a data-role="button" onclick="displayTablesPage()" href="#">Database Tables</a>
+		<a data-role="button" onclick="readClientSecret()" href="#">Login</a>
 		<a data-role="button" onclick="displayTransPage()" href="#">Student Transcripts</a>
 		<a data-role="button" onclick="displayStudentPage()" href="#">Add Student</a>
 		<a data-role="button" href="#my-header" data-rel="close">Close panel</a>
@@ -45,6 +46,7 @@
 			<input type="datetime-local" name="eventStartDaytime">
 			<input type="submit" value="Send">
 		</form>
+
 	</div>
 
 	<div data-role="footer" data-position="fixed">
