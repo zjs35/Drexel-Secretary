@@ -91,4 +91,64 @@ app.get("/createEvent", function (req, res) {
 });
 
 
+// gets the names of staff from database to display
+app.get('/teacherselect', function (req,res){
+	con.query('SELECT Name, email, CalendarId FROM staff WHERE staffid = "' + req.query.id + '";' , function(err,rows,fields){
+		if(err){
+			console.log('Error during query processing');
+			console.log(err);
+			res.send('Error during query processing');
+		}
+		else{
+			var html = "";
+			var name = rows[0].Name;
+			var email = rows[0].email;
+			var CalendarId = rows[0].CalendarId;
+			
+			console.log(rows);
+
+			var html=	'<h2>'+ name +'\'s Office Hours!</h2>'
+						+'<p>Email: '+ email +'</p>'
+						+'<iframe src="https://calendar.google.com/calendar/embed?src=' + CalendarId + '%40group.calendar.google.com&ctz=America%2FNew_York"'
+						+'style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
+
+						+'<form action="javascript:makeEvent()">'
+							+'Request Meeting time (date and time):'
+							+'<input type="datetime-local" name="eventStartDaytime">'
+							+'<input type="submit" value="Send">'
+						+'</form>';
+			res.send(html);
+			
+		}
+	})
+});
+
+// gets list of teachers for given department and job
+app.get('/teacherlist', function (req,res){
+	var request = "";
+	//if department and position are not empty retreives the list of staff names and ids
+	if(req.query.dept != ""){
+		if(req.query.position != ""){
+			request = 'SELECT Name, staffId FROM staff WHERE department = "' + req.query.dep + '" && Status = "'+ req.query.pos +'" ;';
+		}
+	}
+		
+	con.query(request , function(err,rows,fields){
+		if(err){
+			console.log('Error during query processing');
+			console.log(err);
+			res.send('Error during query processing');
+		}
+		else{
+			//returns string with the options for the drop down list
+			var html = "";
+			console.log(rows);
+			for(var i = 0; i <rows.length; i++){
+				html +=	'<option value="'+ rows[i].staffId +'">'+ rows[i].Name +'</option>';
+			}
+			res.send(html);
+		}
+	})
+});
+
 
