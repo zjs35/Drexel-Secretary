@@ -8,85 +8,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 </head>
-<body ng-app="app" ng-controller="ctrl">
-<!--<img src="sign-in-with-google.png" ng-click="login()">-->
-<img src="sign-in-with-google.png" onclick="login()">
-</body>
-
-<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
 <script>
-    var app = angular.module("app", []);
-    var event;
+    var evt;
     var url;
     var windowThatWasOpen;
 
-    app.controller("ctrl", function ($scope, $http, $window) {
-        var url;
-        var windowThatWasOpen;
-
-        $http.get("url").then(function (response) {
-            url = response.data;
-        });
-
-        $scope.login = function () {
-            windowThatWasOpen = $window.open(url, "Please sign in with Google", "width=400, hight:500");
-        };
-
-
-        window.addEventListener("message", receiveMessage);
-
-        function receiveMessage(e) {
-            windowThatWasOpen.close();
-            var code = e.data;
-            console.log(code);
-            $http.get("createEvent", event).then(function (response) {
-                console.log(response);
-                $('#form').html("Event Invite Sent");
-            });
-        }
-    });
-
-    $http.get("url").then(function (response) {
-        url = response.data;
+    $.get("url").then(function (response) {
+        url = response;
     });
 
     function login() {
         windowThatWasOpen = window.open(url, "Please sign in with Google", "width=400, hight:500");
+        window.addEventListener("message", receiveMessage);
+    }
+
+    function receiveMessage(e) {
+        windowThatWasOpen.close();
+        var code = e;
+        console.log(code);
+
+        $.get("createEvent", evt).then(function (response) {
+            console.log(response);
+            $('#form').html(response);
+        });
     }
 
     //make Event and send it to server
     function makeEvent() {
         //get selected table option
-        var email = $('#proffEmail').get(0);
+        var email = $('#proffEmail').val();
         // var studentName = $('input[name=studentName]').val();
-        var title = $('input[name=title]');
+        var title = $('input[name=title]').val();
         var duration = $('#duration option:selected').val();
         var description = $('input[name=description]').val();
         var startTime = parseDate($('input[name=startTime]').val()),
             endTime = new Date(startTime);
-        endTime.setMinutes(startTime.getMinutes() + duration);
-
+        endTime.setMinutes(startTime.getMinutes() + parseInt(duration));
+        startTime = startTime.toISOString();
+        endTime = endTime.toISOString();
         var event = {
-            'summary': title,
-            //'location': 'My Office',
+            'title': title,
             'description': description,
-            'start': {
-                'dateTime': startTime,
-                'timeZone': 'America/New_York'
-            },
-            'end': {
-                'dateTime': endTime,
-                'timeZone': 'America/New_York'
-            },
-            'attendees': [
-                {'email': email}
-            ],
-            "transparency": "opaque",
-            "visibility": "public"
+            'startDatetime':startTime,
+            'endDatetime':endTime,
+            'professorEmail': email,
+            //'location': 'My Office',
         };
         return event;
     }
+
 
     // parse a date in yyyy-mm-dd format
     function parseDate(input) {
@@ -101,10 +72,8 @@
         console.log($('input[name=title]').val());
         console.log($('input[name=startTime]').val());
         console.log($('#duration option:selected').val());
-        event = makeEvent();
-
-        var scope = angular.element(document.getElementById("ctrl")).scope();
-        scope.$login();
+        evt = makeEvent();
+        login();
     }
 </script>
 
@@ -115,8 +84,8 @@
         Event Description: <input type="text" name="description" required>
         Start Time: <input type="datetime-local" name="startTime" required>
         Duration: <select name="duration" id="duration">
-        <option value="30">30 Min</option>
-        <option value="60">1 Hr</option>
+        <option value=30>30 Min</option>
+        <option value=60>1 Hr</option>
     </select>
         <input type="submit">
     </form>

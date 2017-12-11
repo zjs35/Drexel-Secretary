@@ -20,7 +20,7 @@ var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
     // Authorize a client with the loaded credentials, then call the
     // Google Calendar API.
     authorize(JSON.parse(content), listEvents);
-    // authorize(JSON.parse(content), createEvent);
+    authorize(JSON.parse(content), createEvent);
     // authorize(JSON.parse(content), doNothing);
   });
 // }

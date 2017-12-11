@@ -2,6 +2,7 @@
   "name": "demo-tutorial",
   "dependencies": {
     "express": "*",
-    "googleapis": "^23.0.0"
+    "googleapis": "^23.0.0",
+    "moment": "^2.19.4"
   }
 }

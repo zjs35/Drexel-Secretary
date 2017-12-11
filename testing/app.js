@@ -43,28 +43,30 @@ app.get("/ouathcallback", function (req, res) {
         }
         oauth2Client.credentials = token;
     });
-    var html_str = `<script>window.opener.postMessage("Yo", "*");</script>`;
+    var html_str = `<script>window.opener.postMessage("ouathcaallback", "*");</script>`;
     res.send(html_str);
 });
 
 
 app.get("/createEvent", function (req, res) {
     var calendar = google.calendar('v3');
+    var start_time = req.query.startDatetime;
+    var endtime = req.query.endDatetime;
     var event = {
-        'summary': 'Event Test',//req.query.title
+        'summary': req.query.title,//req.query.title
         //'location': 'My Office',
-        'description': 'I love google api',//req.query.description
+        'description': req.query.description,//req.query.description
         'start': {
-            'dateTime': '2017-12-13T09:00:00-07:00',//req.query.startDatetime
+            'dateTime': start_time,//req.query.startDatetime
             'timeZone': 'America/New_York'
         },
         'end': {
-            'dateTime': '2017-12-13T10:00:00-07:00',//req.query.endDatetime
+            'dateTime': endtime,//req.query.endDatetime
             'timeZone': 'America/New_York'
         },
-        // 'attendees': [
-        //     {'email': 'marcohwlam@gmail.com'}//req.query.professorEmail
-        // ],
+        'attendees': [
+            {'email': req.query.professorEmail}//req.query.professorEmail
+        ],
         "transparency": "opaque",
         "visibility": "public"
     };
@@ -80,8 +82,8 @@ app.get("/createEvent", function (req, res) {
             return;
         }
 
-        //var msg = event.htmlLinkl;
-        var msg = `"<p>Event Created</p>"`;
+        var msg = ('Event created<br> <a  href=\"' +  event.htmlLink + '\" >' + event.htmlLink + '</a> ');
+        //var msg = `"<p>Event Created</p>"`;
         console.log(msg);
         res.send(msg);
     });
