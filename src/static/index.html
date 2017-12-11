@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Drexel Secretary</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--&lt;!&ndash; load MUI &ndash;&gt;-->
+    <!--<link href="//cdn.muicss.com/mui-0.9.31/css/mui.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<script src="//cdn.muicss.com/mui-0.9.31/js/mui.min.js"></script>-->
+<!--</head>-->
+
+<div data-role="page">
+
+    <!--<div data-role="panel" id="mypanel" data-position="left" data-display="push">-->
+        <!--<a data-role="button" onclick="displayHome()" href=".">Home</a>-->
+        <!--<a data-role="button" onclick="readClientSecret()" href="#">Login</a>-->
+        <!--<a data-role="button" onclick="displayTransPage()" href="#">Student Transcripts</a>-->
+        <!--<a data-role="button" onclick="displayStudentPage()" href="#">Add Student</a>-->
+        <!--<a data-role="button" href="#my-header" data-rel="close">Close panel</a>-->
+    <!--</div>-->
+
+
+    <!--<div data-role="header" data-position="fixed">-->
+        <!--<h1>Assignment 5</h1>-->
+        <!--&lt;!&ndash; <a href="#mypanel">Open panel</a> &ndash;&gt;-->
+        <!--<a href="#mypanel" data-role="button" data-icon="bars">Menu</a>-->
+        <!--<span class="ui-title"/>-->
+    <!--</div>-->
+
+
+    <div data-role="content" id="content">
+        <h2>Welcome to Drexel Secretary!</h2>
+        <iframe src="https://calendar.google.com/calendar/embed?src=cq1tp3pjurm746oevd6eem2lpg%40group.calendar.google.com&ctz=America%2FNew_York"
+                style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+        <div id="form" class="mui-form">
+            <form action="javascript:sendEvent()">
+                <!--Name: <input type="text" name="stuedntname" required>-->
+                Event Title: <input type="text" name="title" required>
+                Event Description: <input type="text" name="description" required>
+                Start Time: <input type="datetime-local" name="startTime" required>
+                Duration: <select name="duration" id="duration">
+                <option value=30>30 Min</option>
+                <option value=60>1 Hr</option>
+            </select>
+                <button type="submit" class="like" name="foo" value="bar">Make Appointment</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <h1>Drexel Secretary</h1>
+        <span class="ui-title"/>
+    </div>
+
+</div>
+<html>
