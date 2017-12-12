@@ -12,12 +12,18 @@ var server = app.listen(3000, function () {
 });
 
 var con = mysql.createConnection({
+		host: 'localhost',
+		user: 'Suarez914',
+		password: 'Suarez914',
+		database: 'STAFFINFO'
+	/*
     host: '127.0.0.1',
     user: 'root',
     // password: '0000',
     // database: 'DB'
     password: 'woody2999*',
     database: 'staffinfo'
+	*/
 });
 
 var OAuth2 = google.auth.OAuth2;
@@ -110,31 +116,8 @@ app.get('/teacherselect', function (req,res){
 			res.send('Error during query processing');
 		}
 		else{
-			var html = "";
-			var name = rows[0].Name;
-			var email = rows[0].email;
-			var CalendarId = rows[0].CalendarId;
-
 			console.log(rows);
-			var html =`     
-                        <h2>`+ name +`'s Office Hours!</h2>
-                        <p id="email">Email: '`+ email +`'</p>
-                        <iframe src="https://calendar.google.com/calendar/embed?src=`+ CalendarId +`%40group.calendar.google.com&ctz=America%2FNew_York"
-                            style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                        <div id="form" class="mui-form">
-                            <form action="javascript:sendEvent()">
-                                <!--Name: <input type="text" name="stuedntname" required>-->
-                                Event Title: <input type="text" name="title" required>
-                                Event Description: <input type="text" name="description" required>
-                                Start Time: <input type="datetime-local" name="startTime" required>
-                                Duration: <select name="duration" id="duration">
-                                <option value=30>30 Min</option>
-                                <option value=60>1 Hr</option>
-                            </select>
-                                <button type="submit" class="like" name="foo" value="bar">Make Appointment</button>
-                            </form>
-                        </div>`;
-			res.send(html);
+			res.send(rows);
 
 		}
 	})
@@ -146,10 +129,10 @@ app.get('/teacherlist', function (req,res){
 	//if department and position are not empty retreives the list of staff names and ids
 	if(req.query.dept != ""){
 		if(req.query.position != ""){
-			request = 'SELECT Name, staffId FROM staff WHERE department = "' + req.query.dep + '" && Status = "'+ req.query.pos +'" ;';
+			request = 'SELECT Name, staffId FROM staff WHERE department = "' + req.query.dept + '" && Status = "'+ req.query.position +'" ;';
 		}
 	}
-
+		
 	con.query(request , function(err,rows,fields){
 		if(err){
 			console.log('Error during query processing');
@@ -157,13 +140,8 @@ app.get('/teacherlist', function (req,res){
 			res.send('Error during query processing');
 		}
 		else{
-			//returns string with the options for the drop down list
-			var html = "";
 			console.log(rows);
-			for(var i = 0; i <rows.length; i++){
-				html +=	'<option value="'+ rows[i].staffId +'">'+ rows[i].Name +'</option>';
-			}
-			res.send(html);
+			res.send(rows);
 		}
 	})
 });
