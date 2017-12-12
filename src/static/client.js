@@ -103,25 +103,9 @@ function updateCalendar() {
     var option = {
         'id': $('#teacher_name').val(),
     };
-    // $.get("teacherselect", option).then(function (response) {
-    //     console.log(response);
-    //     $('#content').html(response);
-    //     $('#teacher_name').val();
-    // });
-    //get selected table option
-    var URL = 'http://localhost:3000/teacherselect';
-
-    //Construct AJAX request to localhost
-    $.ajax({
-        type: 'GET',
-        url: URL,
-        data: option,
-        dataType: 'html',
-        success: function(msg){
-            $('#content').html(msg);
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            alert('Error contacting server!');
-        }
+    $.get("teacherselect", option).then(function (response) {
+        console.log(response);
+        $('#content').html(response);
+        $('#teacher_name').val();
     });
 }
