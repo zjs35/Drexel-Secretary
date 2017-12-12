@@ -25,7 +25,7 @@ function receiveMessage(e) {
 //make Event and send it to server
 function makeEvent() {
     //get selected table option
-    var email = $('#email').val();
+    var email =  $('p').text();
     // var studentName = $('input[name=studentName]').val();
     var title = $('input[name=title]').val();
     var duration = $('#duration option:selected').val();
@@ -66,23 +66,62 @@ function sendEvent() {
 
 
 function updateTeacherDropdown() {
-    var option = {
-        'position': $('#status').val(),
-        'dept': $('#departments').val(),
-    };
-    $.get("teacherlist", option).then(function (response) {
-        console.log(response);
-        $('#name').html(response);
+    // var option = {
+    //    'position': $('#status').val(),
+    //    'dept': $('#departments').val(),
+    // };
+    console.log("function is running...");
+    var dept = document.getElementById("departments").value;
+    var pos = document.getElementById("status").value;
+
+    var serverurl = "teacherlist?dept=" + dept + "&position=" + pos;
+    console.log(serverurl);
+    $.ajax({
+        type: "GET",
+        url: serverurl,
+        dataType: "json",
+        success: function (msg) {
+            $('#teacher_name').empty();
+
+            $(msg).each(function () {
+                console.log(this.staffId + this.Name);
+                $("<option />", {
+                    val: this.staffId,
+                    text: this.Name
+                }).appendTo($('#teacher_name'));
+            });
+            // $("#teacher_name")[0].selectedIndex = -1;
+        },
+        error: function (jgXHR, textStatus, errorThrown) {
+            alert("Error: " + textStatus + " " + errorThrown);
+        }
     });
 }
 
 
 function updateCalendar() {
     var option = {
-        'id': $('#id').val(),
+        'id': $('#teacher_name').val(),
     };
-    $.get("teacherlist", option).then(function (response) {
-        console.log(response);
-        $('#content').html(response);
+    // $.get("teacherselect", option).then(function (response) {
+    //     console.log(response);
+    //     $('#content').html(response);
+    //     $('#teacher_name').val();
+    // });
+    //get selected table option
+    var URL = 'http://localhost:3000/teacherselect';
+
+    //Construct AJAX request to localhost
+    $.ajax({
+        type: 'GET',
+        url: URL,
+        data: option,
+        dataType: 'html',
+        success: function(msg){
+            $('#content').html(msg);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('Error contacting server!');
+        }
     });
 }

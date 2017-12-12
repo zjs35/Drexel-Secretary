@@ -46,48 +46,31 @@
         <fieldset data-role="controlgroup" data-type="horizontal" align="center">
             <select id="departments">
                 <option value="" disabled selected>Select A School</option><br>
-                <option value='EE'>EE</option>
-                <option value='CE'>CE</option>
                 <option value='CS'>CS</option>
-                <option value='IT'>IT</option>
-                <option value='IS'>IS</option>
+                <option value='CE'>CE</option>
             </select>
 
-            <select id="status">
+            <select id="status" onChange="updateTeacherDropdown()">
                 <option value="" disabled selected>TA/Professor</option><br>
                 <option value='Prof'>Professor</option>
                 <option value='TA'>TA</option>
             </select>
 
-            <select id="name" required>
+            <select id="teacher_name" required>
                 <option value="" disabled selected>Name</option><br>
             </select>
         </fieldset>
-        <button type="submit" onclick="getCalander()">View Calander</button>
+        <button type="button" onclick="updateCalendar()">View Calendar</button>
     </form>
 
 
     </body>
 
+    <div data-role="content" id="emailareea">
+        <p id="email">'</p>
+    </div>
 
     <div data-role="content" id="content">
-        <h2>Welcome to Drexel Secretary!</h2>
-        <iframe src="https://calendar.google.com/calendar/embed?src=cq1tp3pjurm746oevd6eem2lpg%40group.calendar.google.com&ctz=America%2FNew_York"
-                style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-        <div id="form" class="mui-form">
-            <form action="javascript:sendEvent()">
-                <!--Name: <input type="text" name="stuedntname" required>-->
-                Event Title: <input type="text" name="title" required>
-                Event Description: <input type="text" name="description" required>
-                Start Time: <input type="datetime-local" name="startTime" required>
-                Duration: <select name="duration" id="duration">
-                <option value=30>30 Min</option>
-                <option value=60>1 Hr</option>
-            </select>
-                <button type="submit" class="like" name="foo" value="bar">Make Appointment</button>
-            </form>
-        </div>
 
     </div>
 
