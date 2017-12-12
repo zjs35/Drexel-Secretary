@@ -25,7 +25,7 @@ function receiveMessage(e) {
 //make Event and send it to server
 function makeEvent() {
     //get selected table option
-    var email = $('#proffEmail').val();
+    var email = $('#email').val();
     // var studentName = $('input[name=studentName]').val();
     var title = $('input[name=title]').val();
     var duration = $('#duration option:selected').val();
