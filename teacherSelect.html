@@ -5,6 +5,7 @@
   </script>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js">
+      $('#departments').change(testMessage);
   </script>
 
   <link type="text/css" rel="stylesheet"
@@ -15,7 +16,9 @@
     <h1> Teacher Select </h1>
   </div>
 
-  <div data-role="footer" data-position="fixed"> <h1> Teacher Select </h1></div>
+  <div data-role="footer" data-position="fixed">
+    <h1> Teacher Select </h1>
+  </div>
 
   <!-- Make sure page displays properly on smaller screens -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +40,8 @@
   </select>
 </fieldset>
 </form>
-  <button type="button" onclick="getCalander()">View Calander</button>
+  <button type="button" onclick="updateCalendar()">View Calander</button>
 
 </body>
 </html>
+<!--$('#pizza_kind').prop('disabled', false);-->

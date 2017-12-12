@@ -1,6 +1,7 @@
 var express = require('express');
 var google = require("googleapis");
 var app = express();
+var mysql = require('mysql');
 
 app.use(express.static('static'));
 
@@ -8,6 +9,15 @@ var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('Example app listening at http;//%s:%s', host, port);
+});
+
+var con = mysql.createConnection({
+    host: '127.0.0.1',
+    user: 'root',
+    // password: '0000',
+    // database: 'DB'
+    password: 'woody2999*',
+    database: 'staffinfo'
 });
 
 var OAuth2 = google.auth.OAuth2;

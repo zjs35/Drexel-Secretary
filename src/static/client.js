@@ -38,8 +38,8 @@ function makeEvent() {
     var event = {
         'title': title,
         'description': description,
-        'startDatetime':startTime,
-        'endDatetime':endTime,
+        'startDatetime': startTime,
+        'endDatetime': endTime,
         'professorEmail': email,
         //'location': 'My Office',
     };
@@ -62,4 +62,27 @@ function sendEvent() {
     console.log($('#duration option:selected').val());
     evt = makeEvent();
     login();
+}
+
+
+function updateTeacherDropdown() {
+    var option = {
+        'position': $('#status').val(),
+        'dept': $('#departments').val(),
+    };
+    $.get("teacherlist", option).then(function (response) {
+        console.log(response);
+        $('#name').html(response);
+    });
+}
+
+
+function updateCalendar() {
+    var option = {
+        'id': $('#id').val(),
+    };
+    $.get("teacherlist", option).then(function (response) {
+        console.log(response);
+        $('#content').html(response);
+    });
 }

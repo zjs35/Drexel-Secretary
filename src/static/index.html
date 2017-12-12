@@ -28,6 +28,39 @@
         <!--<a href="#mypanel" data-role="button" data-icon="bars">Menu</a>-->
         <!--<span class="ui-title"/>-->
     <!--</div>-->
+    <!-- Set page header and footer that remain at top and bottom, respectively -->
+    <div data-role="header" data-position="fixed">
+        <h1> Teacher Select </h1>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <h1> Teacher Select </h1>
+    </div>
+
+    <!-- Make sure page displays properly on smaller screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+    <form>
+        <fieldset data-role="controlgroup" data-type="horizontal" align="center">
+            <select id="departments">
+                <option value="" disabled selected>Select A School</option><br>
+            </select>
+
+            <select id="status">
+                <option value="" disabled selected>TA/Prof</option><br>
+            </select>
+
+            <select id="name" required>
+                <option value="" disabled selected>Name</option><br>
+            </select>
+        </fieldset>
+        <button type="submit" onclick="getCalander()">View Calander</button>
+    </form>
+
+
+    </body>
 
 
     <div data-role="content" id="content">
