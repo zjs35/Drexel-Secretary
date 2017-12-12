@@ -114,21 +114,28 @@ app.get('/teacherselect', function (req,res){
 			var name = rows[0].Name;
 			var email = rows[0].email;
 			var CalendarId = rows[0].CalendarId;
-			
+
 			console.log(rows);
-
-			var html=	'<h2>'+ name +'\'s Office Hours!</h2>'
-						+'<p>Email: '+ email +'</p>'
-						+'<iframe src="https://calendar.google.com/calendar/embed?src=' + CalendarId + '%40group.calendar.google.com&ctz=America%2FNew_York"'
-						+'style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
-
-						+'<form action="javascript:makeEvent()">'
-							+'Request Meeting time (date and time):'
-							+'<input type="datetime-local" name="eventStartDaytime">'
-							+'<input type="submit" value="Send">'
-						+'</form>';
+			var html =`     
+                        <h2>`+ name +`'s Office Hours!</h2>
+                        <p>Email: '`+ email +`'</p>
+                        <iframe src="https://calendar.google.com/calendar/embed?src=`+ CalendarId +`%40group.calendar.google.com&ctz=America%2FNew_York"
+                            style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                        <div id="form" class="mui-form">
+                            <form action="javascript:sendEvent()">
+                                <!--Name: <input type="text" name="stuedntname" required>-->
+                                Event Title: <input type="text" name="title" required>
+                                Event Description: <input type="text" name="description" required>
+                                Start Time: <input type="datetime-local" name="startTime" required>
+                                Duration: <select name="duration" id="duration">
+                                <option value=30>30 Min</option>
+                                <option value=60>1 Hr</option>
+                            </select>
+                                <button type="submit" class="like" name="foo" value="bar">Make Appointment</button>
+                            </form>
+                        </div>`;
 			res.send(html);
-			
+
 		}
 	})
 });
@@ -142,7 +149,7 @@ app.get('/teacherlist', function (req,res){
 			request = 'SELECT Name, staffId FROM staff WHERE department = "' + req.query.dep + '" && Status = "'+ req.query.pos +'" ;';
 		}
 	}
-		
+
 	con.query(request , function(err,rows,fields){
 		if(err){
 			console.log('Error during query processing');
